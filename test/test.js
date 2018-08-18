@@ -1,35 +1,48 @@
 describe('FormulaService', function () {
-    // define variables for the services we want to access in tests
-    var FormulaService;
-    var q;
-    var $rootScope;
+    var FormulaService, httpBackend;
 
     beforeEach(function () {
         module('formulaApp');
 
-        // inject the services we want to test
-        inject(function ($controller, _FormulaService_,$q, _$rootScope_) {
-            FormulaService = _FormulaService_;
-            q = $q;
-            $rootScope = _$rootScope_;
-        });
-        var deferredSuccess = q.defer();
-        spyOn(FormulaService, 'getChampionsList').and.returnValue(deferredSuccess.promise);
 
+        inject(function ($httpBackend, _FormulaService_) {
+            FormulaService = _FormulaService_;
+            httpBackend = $httpBackend;
+        });
+    });
+
+
+    afterEach(function () {
+        httpBackend.verifyNoOutstandingExpectation();
+        httpBackend.verifyNoOutstandingRequest();
+    });
+
+
+    it('ServiceTestSpecs', function () {
+
+        var returnData = {};
+
+
+        httpBackend.expectGET('http://ergast.com/api/f1/2008/results/1.json').respond(returnData);
+
+
+        var returnedPromise = FormulaService.getChampionsList(2008);
+
+
+        var result;
+        returnedPromise.then(function (response) {
+            result = response.data;//.MRData.RaceTable.Races[0].Results[0].Driver.driverId;
+        });
+
+
+        httpBackend.flush();
+
+
+
+        expect(result).toEqual(returnData);
 
     });
 
-        it('should do something with the', function () {
-            let champ = '';
-            FormulaService.getChampionsList(2008).then(result =>{
-                expect(FormulaService.getChampionsList).toHaveBeenCalledWith(2008);
-                champ = result.data.MRData.RaceTable.Races[0].Results[0].Driver.driverId;
-
-            });
-            $rootScope.$apply();
-            expect(champ).toBe('FIS');
-
-        });
 
 });
 

@@ -6,7 +6,7 @@ let FormulaService = angular.module('FormulaService',[])
          let url = '';
             service.getChampionsList = function(year) {
 
-                 url = "http://ergast.com/api/f1/" + year + '/results/1.json?limit=1000';
+                 url = "http://ergast.com/api/f1/" + year + '/results/1.json';
                 return $http.get(url);
             }
 
