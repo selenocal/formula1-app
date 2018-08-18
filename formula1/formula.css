@@ -1,0 +1,25 @@
+
+.raceTable, th , td  {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+.combo {
+    align-self: center;
+    width: 200px;
+    max-width: 600px;
+    margin-bottom: 40px;
+    height: 30px;
+}
+.topClass{
+    display: flex;
+    flex-direction: column;
+}
+.championTable, th , td  {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+.champion{
+    margin-top: 30px;
+}

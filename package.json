@@ -1,0 +1,25 @@
+{
+  "name": "mobiquity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "angular": "^1.7.3",
+    "angular-mocks": "^1.7.3",
+    "angular-ui-router": "^1.0.20",
+    "jasmine-core": "^3.2.1",
+    "karma": "^3.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.2",
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "selen ocal",
+  "license": "ISC"
+}

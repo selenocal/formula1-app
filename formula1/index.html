@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="formulaApp">
+<head>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="formulaCtrl.js"></script>
+    <script src="../formula1Service/formulaService.js"></script>
+    <link rel="stylesheet" href="formula.css">
+</head>
+<body>
+<div class="topClass" ng-controller="FormulaController as formula">
+
+    <select class="combo" ng-init="formula.initFunction()" ng-options="item as item for item in formula.yearlist.years" ng-model="formula.selected" ng-change="formula.hasChanged()"></select>
+
+    <table class="raceTable" align="center" datatable="ng" dt-options="dtOptions">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Driver</th>
+            <th>Constructor</th>
+            <th>Laps</th>
+            <th>Grid</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Points</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="race in formula.races">
+        <tr change-color="race.Results[0].Driver.color">
+            <td>{{race.Results[0].number}}</td>
+            <td>{{race.Results[0].Driver.givenName}} {{race.Results[0].Driver.familyName}}</td>
+            <td>{{race.Results[0].Constructor.name}} </td>
+            <td>{{race.Results[0].laps}}</td>
+            <td>{{race.Results[0].grid}}</td>
+            <td>{{race.Results[0].Time.time}}</td>
+            <td>{{race.Results[0].status}}</td>
+            <td>{{race.Results[0].points}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="champion" ng-show="formula.listShow">
+        <table class="championTable" align="center" datatable="ng" dt-options="dtOptions">
+            <thead>
+            <tr>
+                <th>Driver</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr change-color="true">
+                <td>{{formula.topScoreAndDriver.driverName}}</td>
+                <td>{{formula.topScoreAndDriver.score}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
